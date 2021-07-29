@@ -1,5 +1,17 @@
-import requests
-from pprint import *
+from fastapi import FastAPI
+import uvicorn
 
-r = requests.get('https://api.github.com/repos/hekkaaa/automatic_trading_system/commits?page=1').json()
-pprint(r)
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+
+if __name__ == '__main__':
+    uvicorn.run(
+        "app:app",
+        host='localhost',
+        port=8080,
+        reload=True
+    )
