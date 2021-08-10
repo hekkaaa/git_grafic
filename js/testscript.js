@@ -29,8 +29,15 @@ function preloaders(){
     // setTimeout(() => div.remove(), 1000);
 }
 
-function fetchresponce (){
+async function fetchresponce(){
+    let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+    let response = await fetch(url);
 
+        if (response.ok) {
+            return true
+        } else {
+            return false
+        }
 }
 
 const StartAnim = {
@@ -49,18 +56,18 @@ const StartAnim = {
            //запуск прелоадера
             setTimeout(() => preloaders(), 1600)
             setTimeout(() => this.show = true, 4000)
+
+            let hh = fetchResponse()
+            console.log(hh)
         }
     }
 } 
 
 Vue.createApp(StartAnim).mount('#startpagevue')
 
-// const Demo = {
-// data() {
-//     return {
-//     show: true
-//     }
-// }
-// }
 
-// Vue.createApp(Demo).mount('#demo')
+
+
+
+  
+ 
