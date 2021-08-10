@@ -29,8 +29,15 @@ function preloaders(){
     // setTimeout(() => div.remove(), 1000);
 }
 
-function fetchresponce (){
+async function fetchresponce(){
+    let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+    let response = await fetch(url);
 
+        if (response.ok) {
+            return true
+        } else {
+            return false
+        }
 }
 
 const StartAnim = {
@@ -40,27 +47,43 @@ const StartAnim = {
         }
     },
     methods: {
-        StartClick(){
+        async StartClick(){
             this.show = false
             // удаление элементов 
             // setTimeout(() => testtext.remove(), 2000)
             // setTimeout(() => startpageelem2.remove(), 2000)
             // setTimeout(() => button1.remove(), 2000)
+
            //запуск прелоадера
             setTimeout(() => preloaders(), 1600)
             setTimeout(() => this.show = true, 4000)
+
+            // делаем запрос к серверу через функцию.
+            let response = await this.Testfett()
+
+            // логика ответа от сервера.
+            if(response.ok){
+                console.log('true')
+            }
+            else{
+                console.log('false')
+            }
+           
+        },
+        // запрос к серверу.
+        async Testfett(){
+            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+            let response = await fetch(url);        
+            return response
         }
     }
 } 
 
 Vue.createApp(StartAnim).mount('#startpagevue')
 
-// const Demo = {
-// data() {
-//     return {
-//     show: true
-//     }
-// }
-// }
 
-// Vue.createApp(Demo).mount('#demo')
+
+
+
+  
+ 
