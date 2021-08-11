@@ -1,3 +1,13 @@
+body {
+  background-color: #FFFFCC;
+}
+
+.row{  
+  height: 100vh;
+}
+
+/* ------------- Preloader Animation -------------------- */
+
 .spinner {
     margin: 100px auto;
     width: 40px;
@@ -50,7 +60,7 @@
 
 
 
-/* --------------------------------- */
+/* ------------- Transition animation -------------------- */
 
 
 .fade-enter-active,
@@ -65,8 +75,10 @@
 
 
 
-/* --------------------------------- */
+/* Style for id = startpageelem3 */
 
 .active {
   opacity : 0;
 }
+
+

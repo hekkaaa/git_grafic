@@ -85,16 +85,11 @@ const StartAnim = {
         },
         // запрос к серверу.
         async Testfett(){
-            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
             let response = await fetch(url);        
             return response
         }
-    },
-    mounted() {
-        setInterval(() => {
-            this.status = true 
-        }, 1000)
-      }
+    }
 } 
 
 Vue.createApp(StartAnim).mount('#startpagevue') 
