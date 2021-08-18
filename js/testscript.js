@@ -1,4 +1,5 @@
-
+const SERVERFLASK = 'http://127.0.0.1:5000'
+const SERVER = 'http://127.0.0.1:8000'
 // Нажатие кнопки
 // function StartClick(){
 //     // let div = document.createElement('div');
@@ -85,8 +86,15 @@ const StartAnim = {
         },
         // запрос к серверу.
         async Testfett(){
-            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
-            let response = await fetch(url);        
+            
+            // let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
+            let response = await fetch(SERVER,{
+                headers:{
+                    Authentication: 'secret'
+                }
+            });  
+
+            console.log(response)      
             return response
         }
     }
