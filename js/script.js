@@ -29,7 +29,7 @@ const StartAnim = {
             setTimeout(() => preloaders(), 1600)
             
             // делаем запрос к серверу через функцию.
-            let response = await this.Testfett()
+            let response = await this.Responcefetch()
 
             // логика ответа от сервера.
             if(response.ok){
@@ -47,7 +47,7 @@ const StartAnim = {
             }
         },
         // запрос к серверу.
-        async Testfett(){
+        async Responcefetch(){
             let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
             let response = await fetch(url);        
             return response
