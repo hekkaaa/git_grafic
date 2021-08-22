@@ -1,5 +1,11 @@
+// Адрес сервера.
 const SERVERFLASK = 'http://127.0.0.1:5000'
 const SERVER = 'http://127.0.0.1:8000'
+const SERVERPOST = 'http://127.0.0.1:8000/post'
+// Заведомо ломанный адрес для теста ошибок.
+const SERVERFAILED = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11'
+
+
 // Нажатие кнопки
 // function StartClick(){
 //     // let div = document.createElement('div');
@@ -65,6 +71,22 @@ const StartAnim = {
             // логика ответа от сервера.
             if(response.ok){
                 console.log('true')
+                // POST запрос на сервер
+                console.log('POST')
+            let user = {
+                name: 'John',
+                surname: 'Smith'
+              };
+
+            let response = await fetch(SERVER + '/post', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(user)
+              });
+              
+            console.log(response.json())  
                 // удаление элементов 
                 // setTimeout(() => testtext.remove(), 2000)
                 // setTimeout(() => startpageelem2.remove(), 2000)
@@ -96,7 +118,8 @@ const StartAnim = {
 
             console.log(response)      
             return response
-        }
+        },
+       
     }
 } 
 

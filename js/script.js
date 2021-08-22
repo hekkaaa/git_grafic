@@ -1,3 +1,9 @@
+// Адрес сервера.
+const SERVER = 'http://127.0.0.1:8000'
+const SERVERPOST = 'http://127.0.0.1:8000/post'
+// Заведомо ломанный адрес для теста ошибок.
+const SERVERFAILED = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11'
+
 // Прелоадер
 function preloaders(){
 
@@ -33,8 +39,36 @@ const StartAnim = {
 
             // логика ответа от сервера.
             if(response.ok){
-                console.log('true')
-               // Тут дальше будет код!!!!
+                // Формирование POST запроса.
+                let user = {
+                    //Забираем данные из input.
+                    name: document.getElementById("basic-url").value,
+                  };
+    
+                let response = await fetch(SERVERPOST, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(user)
+                  });
+
+                // Если вдруг будет ошибка появится на стадии POST запроса.
+                if(response.ok){
+
+                    console.log('SERVER RESPONSE:')
+                    console.log(response.json()) 
+                     // Тут дальше будет код!!!!
+                }
+                else{
+                    // если ответа нет убираем preloader и возвращаем меню.
+                    setTimeout(() => this.show = true, 2500)
+                    // удаление
+                    setTimeout(() => preloader.remove(), 2500)
+                    this.isActive = false
+                    this.servresp = response.status
+                }
+    
             }
             else{
                 // если ответа нет убираем preloader и возвращаем меню.
@@ -48,7 +82,7 @@ const StartAnim = {
         },
         // запрос к серверу.
         async Responcefetch(){
-            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
+            let url = SERVER;
             let response = await fetch(url);        
             return response
         }
