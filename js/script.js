@@ -1,3 +1,9 @@
+// Адрес сервера.
+const SERVER = 'http://127.0.0.1:8000'
+const SERVERPOST = 'http://127.0.0.1:8000/post'
+// Заведомо ломанный адрес для теста ошибок.
+const SERVERFAILED = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11'
+
 // Прелоадер
 function preloaders(){
 
@@ -33,7 +39,23 @@ const StartAnim = {
 
             // логика ответа от сервера.
             if(response.ok){
-                console.log('true')
+                // Формирование POST запроса.
+                let user = {
+                    name: 'John',
+                    surname: 'Smith'
+                  };
+    
+                let response = await fetch(SERVER + '/post', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(user)
+                  });
+                  
+                console.log(response.json())  
+
+
                // Тут дальше будет код!!!!
             }
             else{
@@ -48,7 +70,7 @@ const StartAnim = {
         },
         // запрос к серверу.
         async Responcefetch(){
-            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
+            let url = SERVER;
             let response = await fetch(url);        
             return response
         }
