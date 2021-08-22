@@ -119,25 +119,7 @@ const StartAnim = {
             console.log(response)      
             return response
         },
-        // тестовый пост запрос
-        async POSTSERVER(){
-        
-            console.log('POST')
-            let user = {
-                name: 'John',
-                surname: 'Smith'
-              };
-
-            let response = await fetch(SERVER + '/post', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(user)
-              });
-              
-            console.log(response.json())  
-        }
+       
     }
 } 
 

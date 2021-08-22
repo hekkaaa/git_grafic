@@ -23,13 +23,14 @@
         
           <!-- Форма для ссылки -->
           <div class="col-auto mb-3">
+            <label for="basic-url" class="form-label">Укажите оставшийся путь https://github.com/<b>vuejs/vue-cli</b></label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">https://github.com/</span>
-                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" data-bs-toggle="tooltip" data-bs-placement="right" title="Введите оставшийся путь до репозитория">
-                </div>
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" data-bs-toggle="tooltip" data-bs-placement="right" title="Введите оставшийся путь до репозитория">                    
+                 </div>
             </div>
-            
-            <!-- Текст при ошибке -->
+          
+             <!-- Текст при ошибке -->
             <div class="col-auto mb-3">
                 <p class="bg-danger" id ="startpageelem3" v-if="show" :class = "{active: isActive}">Server response error: <b>{{ servresp }}</b></p>
            </div>

@@ -41,22 +41,34 @@ const StartAnim = {
             if(response.ok){
                 // Формирование POST запроса.
                 let user = {
-                    name: 'John',
-                    surname: 'Smith'
+                    //Забираем данные из input.
+                    name: document.getElementById("basic-url").value,
                   };
     
-                let response = await fetch(SERVER + '/post', {
+                let response = await fetch(SERVERPOST, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json;charset=utf-8'
                     },
                     body: JSON.stringify(user)
                   });
-                  
-                console.log(response.json())  
 
+                // Если вдруг будет ошибка появится на стадии POST запроса.
+                if(response.ok){
 
-               // Тут дальше будет код!!!!
+                    console.log('SERVER RESPONSE:')
+                    console.log(response.json()) 
+                     // Тут дальше будет код!!!!
+                }
+                else{
+                    // если ответа нет убираем preloader и возвращаем меню.
+                    setTimeout(() => this.show = true, 2500)
+                    // удаление
+                    setTimeout(() => preloader.remove(), 2500)
+                    this.isActive = false
+                    this.servresp = response.status
+                }
+    
             }
             else{
                 // если ответа нет убираем preloader и возвращаем меню.
