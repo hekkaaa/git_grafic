@@ -58,7 +58,7 @@ const StartAnim = {
 
                     console.log('SERVER RESPONSE:')
                     console.log(response.json()) 
-                     // Тут дальше будет код!!!!
+                    // Тут дальше будет код!!!!
                 }
                 else{
                     // если ответа нет убираем preloader и возвращаем меню.

@@ -92,6 +92,13 @@ const StartAnim = {
                 // setTimeout(() => startpageelem2.remove(), 2000)
                 // setTimeout(() => startpageelem3.remove(), 2000)
                 // setTimeout(() => button1.remove(), 2000)
+
+            console.log('POST 2!')
+              let test_response = await this.testPost()
+              
+            
+              console.log(test_response.json().then())
+              console.log()
             }
             else{
                 // если ответа нет убираем preloader и возвращаем меню.
@@ -119,7 +126,21 @@ const StartAnim = {
             console.log(response)      
             return response
         },
-       
+       async testPost(){
+        let user = {
+            name: 'MEOW!',
+            surname: 'CAT'
+          };
+
+        let response = await fetch(SERVER + '/post', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(user)
+          });
+          return response
+       }
     }
 } 
 
