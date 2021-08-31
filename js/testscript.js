@@ -96,9 +96,14 @@ const StartAnim = {
             console.log('POST 2!')
               let test_response = await this.testPost()
               
-            
-              console.log(test_response.json().then())
-              console.log()
+              let hh = await test_response.json()
+              console.log(hh)
+              console.log('______________')
+              console.log(hh.answer_post['message'])
+              console.log(hh.error_type)
+              console.log(hh.error_value)
+              console.log(hh.ok)
+              
             }
             else{
                 // если ответа нет убираем preloader и возвращаем меню.
@@ -116,7 +121,7 @@ const StartAnim = {
         // запрос к серверу.
         async Testfett(){
             
-            // let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits11';
+            // let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
             let response = await fetch(SERVER,{
                 headers:{
                     Authentication: 'secret'

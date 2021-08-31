@@ -17,7 +17,6 @@ function preloaders(){
    
 }
 
-
 // VUE JS
 const StartAnim = {
     data(){
@@ -34,31 +33,28 @@ const StartAnim = {
            //запуск прелоадера
             setTimeout(() => preloaders(), 1600)
             
-            // делаем запрос к серверу через функцию.
+            // Делаем запрос к серверу через функцию.
             let response = await this.Responcefetch()
 
-            // логика ответа от сервера.
+            // логика ответа от сервера. // Переделать через try/catch!!!
             if(response.ok){
                 // Формирование POST запроса.
-                let user = {
-                    //Забираем данные из input.
-                    name: document.getElementById("basic-url").value,
-                  };
-    
-                let response = await fetch(SERVERPOST, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json;charset=utf-8'
-                    },
-                    body: JSON.stringify(user)
-                  });
+                response = await this.ResponcefetchPost()
+                // Если вдруг будет ошибка появится на стадии POST запроса. 
 
-                // Если вдруг будет ошибка появится на стадии POST запроса.
                 if(response.ok){
+                    response = await response.json()
 
-                    console.log('SERVER RESPONSE:')
-                    console.log(response.json()) 
-                    // Тут дальше будет код!!!!
+                    if(response.error_value){
+                        setTimeout(() => this.show = true, 2500)
+                        // удаление
+                        setTimeout(() => preloader.remove(), 2500)
+                        this.isActive = false
+                        this.servresp = response.error_type
+                    }
+                    else{
+                        // Тут будет код!!!
+                    }
                 }
                 else{
                     // если ответа нет убираем preloader и возвращаем меню.
@@ -85,8 +81,23 @@ const StartAnim = {
             let url = SERVER;
             let response = await fetch(url);        
             return response
+        },
+        async ResponcefetchPost(){
+            let user = {
+                //Забираем данные из input.
+                name: document.getElementById("basic-url").value,
+              };
+
+            let response = await fetch(SERVERPOST, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(user)
+              });
+              return response
         }
     }
-} 
+}
 
 Vue.createApp(StartAnim).mount('#startpagevue') 

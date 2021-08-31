@@ -16,14 +16,13 @@ class Git_Request:
             # Проверяем типа переменнойю Ошибки api летят в dict. Нормальный ответ в list.
             if isinstance(res, dict) == True:
                 # Ошибка ссылки
-                if res['documentation_url'] == 'https://docs.github.com/rest/reference/repos#list-commits':
+                if res['documentation_url'] == 'https://docs.github.com/rest/reference/repos#list-commits' or res['documentation_url'] == "https://docs.github.com/rest/reference/repos#get-a-repository":
                     error_value = True
-                    error_type = "Ошибка ссылки репозиторий"
+                    error_type = "Ошибка на ссылку репозитория"
                     return_list = res
                     break
                 # Блокировка IP
-                elif res[
-                    'documentation_url'] == 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting':
+                elif res['documentation_url'] == 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting':
                     error_value = True
                     error_type = "Блокировка IP. Превышен лимит запросов."
                     return_list = res
