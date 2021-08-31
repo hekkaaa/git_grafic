@@ -37,16 +37,37 @@ function preloaders(){
     // setTimeout(() => div.remove(), 1000);
 }
 
-// Запрос на сервер
-async function fetchresponce(){
-    let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
-    let response = await fetch(url);
+//D3 
+function d3_test(){
+    let div = document.createElement('div');
+    div.id = 'gitvizual';
+    document.body.append(div); //добавляем элементы
 
-        if (response.ok) {
-            return true
-        } else {
-            return false
-        }
+    let root = d3.select("#gitvizual")
+    .append("svg")
+    .attr("width", 3000)
+    .attr("height", 3000); 
+    
+
+let size = 25
+
+for(let i=1; i<=size; i++){
+    console.log(i)
+    root.append("circle")
+    .attr("r", 5)
+    .attr("cx", 20*i*2)
+    .attr("cy", 250)
+    .style("fill", "red")
+
+    root.append('line')
+    .style("stroke", "rgb(6,120,155)")
+    .attr('x1',20*i*2)
+    .attr('y1',250)
+    .attr('x2',20*i*4)
+    .attr('y2',250)
+}
+
+console.log('meow!')
 }
 
 /// VUE JS
@@ -70,39 +91,15 @@ const StartAnim = {
 
             // логика ответа от сервера.
             if(response.ok){
-                console.log('true')
-                // POST запрос на сервер
-                console.log('POST')
-            let user = {
-                name: 'John',
-                surname: 'Smith'
-              };
+            // удаление элементов 
+            // setTimeout(() => testtext.remove(), 2000)
+            // setTimeout(() => startpageelem2.remove(), 2000)
+            // setTimeout(() => startpageelem3.remove(), 2000)
+            // setTimeout(() => button1.remove(), 2000)
 
-            let response = await fetch(SERVER + '/post', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(user)
-              });
-              
-            console.log(response.json())  
-                // удаление элементов 
-                // setTimeout(() => testtext.remove(), 2000)
-                // setTimeout(() => startpageelem2.remove(), 2000)
-                // setTimeout(() => startpageelem3.remove(), 2000)
-                // setTimeout(() => button1.remove(), 2000)
-
-            console.log('POST 2!')
-              let test_response = await this.testPost()
-              
-              let hh = await test_response.json()
-              console.log(hh)
-              console.log('______________')
-              console.log(hh.answer_post['message'])
-              console.log(hh.error_type)
-              console.log(hh.error_value)
-              console.log(hh.ok)
+            console.log('POST')
+            let response = await this.testPost()
+            console.log(response.answer_post)
               
             }
             else{
@@ -148,5 +145,13 @@ const StartAnim = {
        }
     }
 } 
+
+const Test_Vue = {
+    data(){
+        return{
+            counts: 1
+        }
+    }
+}
 
 Vue.createApp(StartAnim).mount('#startpagevue') 

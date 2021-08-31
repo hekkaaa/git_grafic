@@ -16,12 +16,45 @@ function preloaders(){
     buttonBefore.insertAdjacentElement('afterBegin', div)
    
 }
+// D3
+function d3_prod(answer_post){
+    let div = document.createElement('div');
+    div.id = 'gitvizual';
+    document.body.append(div); //добавляем элементы
 
+    let root = d3.select("#gitvizual")
+    .append("svg")
+    .attr("width", 3000)
+    .attr("height", 3000); 
+    
+
+let size = answer_post.length
+console.log(answer_post)
+
+for(let i=1; i<=size; i++){
+    console.log(i)
+    root.append("circle")
+    .attr("r", 5)
+    .attr("cx", 20*i*2)
+    .attr("cy", 250)
+    .style("fill", "red")
+
+    root.append('line')
+    .style("stroke", "rgb(6,120,155)")
+    .attr('x1',20*i*2)
+    .attr('y1',250)
+    .attr('x2',20*i*4)
+    .attr('y2',250)
+}
+
+}
+
+// ***************************************************************************************************************88
 // VUE JS
 const StartAnim = {
     data(){
         return {
-            show: true, // переод анимации
+            show: true, // переход анимации
             servresp: 'none', // переменная для ошибки от сервера при запросе
             isActive: true // отображение ошибки
         }
@@ -53,6 +86,12 @@ const StartAnim = {
                         this.servresp = response.error_type
                     }
                     else{
+                        // удаление элементов главной страницы
+                        setTimeout(() => startpagevue.remove(), 5000)
+                        //переход
+                        setTimeout(() => this.show = true, 5500)
+                        setTimeout(() => d3_prod(response.answer_post), 5500)
+                        
                         // Тут будет код!!!
                     }
                 }
